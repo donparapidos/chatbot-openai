@@ -10,14 +10,15 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 flask_secret_key = os.getenv("FLASK_SECRET_KEY", "changmetorandomkey")
 temp = os.getenv("TEMPERATURE", 0.1)
 tokens = os.getenv("TOKENS", 2048)
-session_prompt = os.getenv("PROMPT", "Jaz sem Jože. Sem brihtna glava ki vse ve, vprašaj me karkoli.\n")
-ai_name = os.getenv("AI_NAME", "Jože")
-chatter_ref = os.getenv("USER_REFERENCE", "Jaz")
+bot_engine = os.getenv("ENGINE", "text-davinci-003")
+session_prompt = os.getenv("PROMPT", "I am super smart bot, ask me anything.\n")
+ai_name = os.getenv("AI_NAME", "AI")
+chatter_ref = os.getenv("USER_REFERENCE", "Me")
 start_sequence = "\n%s: " % ai_name
 restart_sequence = "\n%s: " % chatter_ref
 
 
-def bot(prompt, chat_log, engine='text-davinci-003', temp=temp, tokens=tokens, n=1, stop=["\n"]):
+def bot(prompt, chat_log, engine=bot_engine, temp=temp, tokens=tokens, n=1, stop=["\n"]):
     """main function for calling openai bot"""
     max_retry = 1
     retry = 0

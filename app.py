@@ -20,8 +20,10 @@ def get_bot_response():
         if len(chat_log) > 2000:
             reduced_string = re.sub(r'.', '', chat_log, count = len(question))
             chat_log = "\n".join(reduced_string.split("\n")[5:])
+    app.logger.info('Q: %s', question)
     botresponse = bot(prompt=question, chat_log=chat_log)
     session['chat_log'] = append_interaction_to_chat_log(question, botresponse, chat_log)
+    app.logger.info('A: %s', botresponse)
     return str(botresponse)
 
 if __name__ == "__main__":
